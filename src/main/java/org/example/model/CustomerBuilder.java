@@ -2,6 +2,8 @@ package org.example.model;
 
 import org.example.model.concrete.LegalPerson;
 
+import java.util.Locale;
+
 public class CustomerBuilder {
     private final Long id;
     private final String name;
@@ -9,7 +11,7 @@ public class CustomerBuilder {
     private final String address;
     private final String phoneNumber;
 
-    protected CustomerBuilder(Builder b) {
+    public CustomerBuilder(Builder b) {
         this.id = b.id;
         this.name = b.name;
         this.email = b.email;
@@ -17,36 +19,37 @@ public class CustomerBuilder {
         this.phoneNumber = b.phoneNumber;
     }
 
-    public static class Builder {
+    public abstract static class Builder<T extends Builder<?>> {
         protected Long id;
         protected String name;
         protected String email;
         protected String address;
         protected String phoneNumber;
 
+        protected abstract T self();
+
         public Builder(Long id, String name) {
             this.id = id;
             this.name = name;
         }
 
-        public Builder email(String email) {
+        public T email(String email) {
             this.email = email;
-            return this;
+            return self();
         }
 
-        public Builder address(String address) {
+        public T address(String address) {
             this.address = address;
-            return this;
+            return self();
         }
 
-        public Builder phoneNumber(String phoneNumber) {
+        public T phoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
-            return this;
+            return self();
         }
 
-        public CustomerBuilder build(){
-            return new CustomerBuilder(this);
-        }
+        public abstract CustomerBuilder build();
+
 
     }
 

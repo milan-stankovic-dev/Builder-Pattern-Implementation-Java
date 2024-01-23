@@ -14,9 +14,15 @@ public class LegalPerson extends CustomerBuilder {
         this.foundingDate = b.foundingDate;
     }
 
-    public static class Builder extends CustomerBuilder.Builder{
+    public static class Builder extends CustomerBuilder.Builder<Builder> {
         private String firmName;
         private Date foundingDate;
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
         public Builder(Long id, String name){
             super(id, name);
         }

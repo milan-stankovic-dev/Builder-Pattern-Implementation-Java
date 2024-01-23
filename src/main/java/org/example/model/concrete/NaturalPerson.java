@@ -13,9 +13,14 @@ public class NaturalPerson extends CustomerBuilder {
         this.socialSecurity = b.socialSecurity;
     }
 
-    public static class Builder extends CustomerBuilder.Builder{
+    public static class Builder extends CustomerBuilder.Builder<Builder> {
         private String lastName;
         private String socialSecurity;
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
         public Builder(Long id, String name){
             super(id, name);
@@ -28,24 +33,6 @@ public class NaturalPerson extends CustomerBuilder {
 
         public Builder socialSecurity(String socialSecurity) {
             this.socialSecurity = socialSecurity;
-            return this;
-        }
-
-        @Override
-        public Builder email(String email){
-            this.email = email;
-            return this;
-        }
-
-        @Override
-        public Builder address(String address){
-            this.address = address;
-            return this;
-        }
-
-        @Override
-        public Builder phoneNumber(String phoneNumber){
-            this.phoneNumber = phoneNumber;
             return this;
         }
 
