@@ -1,0 +1,1 @@
+The purpose of this project is to present one possible way of implementing the Builder Pattern in Java. It chiefly focuses on the differences between the Telescoping Constructor antipatter as oppose to Builder Pattern as well as how one may implement the Builder Pattern with a single degree of inheritance.
